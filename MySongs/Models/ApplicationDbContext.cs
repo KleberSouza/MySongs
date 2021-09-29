@@ -14,5 +14,7 @@ namespace MySongs.Models
         }
 
         public DbSet<Genero> Generos { get; set; }
+
+        public DbSet<Musica> Musicas { get; set; }
     }
 }
