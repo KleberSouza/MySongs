@@ -25,6 +25,33 @@ namespace MySongs.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Favoritas()
+        {
+            var musicas = await _context.Musicas
+                .Include(t => t.Genero)
+                .Where(c => c.Favorita)
+                .ToListAsync();
+            
+            return View(musicas);
+        }
+
+        public async Task<IActionResult> Genero(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var genero = await _context.Generos.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (genero == null) return NotFound();
+
+            ViewBag.Genero = genero;
+
+            var musicas = await _context.Musicas
+                .Where(c => c.GeneroId == id)
+                .ToListAsync();
+
+            return View(musicas);
+        }
+
         // GET: Musicas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -56,7 +83,7 @@ namespace MySongs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Duracao,DataLancamento,GeneroId")] Musica musica)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Duracao,DataLancamento,GeneroId,Favorita")] Musica musica)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +117,7 @@ namespace MySongs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Duracao,DataLancamento,GeneroId")] Musica musica)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Duracao,DataLancamento,GeneroId,Favorita")] Musica musica)
         {
             if (id != musica.Id)
             {

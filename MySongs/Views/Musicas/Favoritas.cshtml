@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<MySongs.Models.Musica>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Favoritas";
 }
 
-<h1>Index</h1>
+<h1>Favoritas</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -43,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.DataLancamento)
             </td>
             <td>
-                <a asp-controller="Musicas" asp-action="Genero" asp-route-id="@item.Genero.Id">@item.Genero.Nome</a>
+                @Html.DisplayFor(modelItem => item.Genero.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Favorita)

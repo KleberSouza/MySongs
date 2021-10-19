@@ -18,5 +18,12 @@ namespace MySongs.Models
         public string Nome { get; set; }
 
         public ICollection<Musica> Musicas { get; set; }
+
+        [NotMapped]
+        public int Size 
+        { 
+            get { if (Musicas == null) return 0; else return Musicas.Count; }   
+        }
+
     }
 }

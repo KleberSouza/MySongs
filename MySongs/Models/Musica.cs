@@ -27,9 +27,12 @@ namespace MySongs.Models
 
         [Display(Name = "Gênero")]
         [Required(ErrorMessage = "Obrigatório informar o gênero!")]
-        public int GeneroId { get; set; }
+        public int GeneroId { get; set; }        
 
         [ForeignKey("GeneroId")]
         public Genero Genero { get; set; }
+
+        [Display(Name = "Favorita")]
+        public bool Favorita { get; set; }
     }
 }

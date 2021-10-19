@@ -1,0 +1,45 @@
+﻿@model MySongs.Models.Genero
+
+@{
+    ViewData["Title"] = "Musicas";
+}
+
+<h1>@Model.Nome</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Música
+            </th>
+            <th>
+                Duração
+            </th>
+            <th>
+                Data de Lançamento
+            </th>
+            <th>
+                Favorita
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Musicas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duracao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataLancamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Favorita)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

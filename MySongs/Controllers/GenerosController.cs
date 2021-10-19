@@ -21,7 +21,20 @@ namespace MySongs.Controllers
         // GET: Generos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Generos.ToListAsync());
+            return View(await _context.Generos.Include(t => t.Musicas).ToListAsync());
+        }
+
+        public async Task<IActionResult> Musicas(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var genero = await _context.Generos
+                .Include(t => t.Musicas)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            
+            if (genero == null) return NotFound();
+
+            return View(genero);
         }
 
         // GET: Generos/Details/5

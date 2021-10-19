@@ -15,6 +15,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
+            <th>
+                # Músicas
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -22,7 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+                <a asp-action="Musicas" asp-route-id="@item.Id">@item.Nome</a>
+            </td>
+            <td>
+                @item.Size
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> |
