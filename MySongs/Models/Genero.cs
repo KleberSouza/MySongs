@@ -23,7 +23,7 @@ namespace MySongs.Models
         public int Size 
         { 
             get { if (Musicas == null) return 0; else return Musicas.Count; }   
-        }
+        }        
 
     }
 }

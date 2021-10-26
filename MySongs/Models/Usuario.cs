@@ -26,6 +26,8 @@ namespace MySongs.Models
 
         [Required(ErrorMessage = "Obrigatório informar o perfil!")]
         public Perfil Perfil { get; set; }
+
+        public ICollection<Grupo> Grupos { get; set; }
     }
 
     public enum Perfil

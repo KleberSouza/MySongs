@@ -88,8 +88,9 @@ namespace MySongs.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Nome),
-                    new Claim(ClaimTypes.NameIdentifier, user.Email),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Role, user.Perfil.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email),
                 };
 
                 var userIdentity = new ClaimsIdentity(claims, "login");
